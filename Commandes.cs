@@ -23,8 +23,33 @@ namespace TP1_SLAM5
             {
                 x.Numcde,
                 x.Montantcde,
-                x.Datecde
+                x.Datecde,
+                x.NumcliNavigation.Nomcli,
+                x.NumcliNavigation.Prenomcli
             });
+            dgvCommandes.DataSource = bsCommandes;
+
+            cbClients.ValueMember = "NUMCLI"; //permet de stocker l'identifiant
+            cbClients.DisplayMember = "NOMCLI";
+            bsClients2.DataSource = Modele.listeClients();
+            cbClients.DataSource = bsClients2;
+        }
+
+        private void bsClients2_CurrentChanged(object sender, EventArgs e)
+        {
+            // récupération de l’identifiant du client issu de la comboBox : on a NUMCLI en ValueMember de la
+            // combo, donc on peut récupérer la valeur par la propriété SelectedValue
+            int IDC = Convert.ToInt32(cbClients.SelectedValue);
+            int IdClient = Convert.ToInt32(cbClients.SelectedValue);
+            bsCommandes.DataSource = Modele.listeCommandesParClient(IdClient).Select(x => new
+            {
+                x.Numcde,
+                x.Datecde,
+                x.Montantcde,
+                x.NumcliNavigation.Nomcli,
+                x.NumcliNavigation.Prenomcli
+            })
+            .OrderBy(x => x.Datecde);
             dgvCommandes.DataSource = bsCommandes;
         }
     }
