@@ -52,18 +52,13 @@ namespace TP1_SLAM5
         {
             return monModel.Styles.ToList();
         }
-        public static bool AjoutCommande(int montant, DateTime dateC, int idClient)
+        public static bool AjoutCommande(Commande comm)
         {
-            Commande maCommande;
+            
             bool vretour = true;
             try
             {
-                maCommande = new Commande();
-                maCommande.Montantcde = montant; // mise à jour des propriétés
-                maCommande.Datecde = DateOnly.FromDateTime(dateC); // la propriété DateCde doit être en DateTime dans la BD et dans la classe Commande, modifier si besoin.
-                maCommande.Numcli = idClient;
-                // ajout de l’objet : correspond à un insert
-                monModel.Commandes.Add(maCommande);
+                monModel.Commandes.Add(comm);
                 monModel.SaveChanges();
             }
             catch (Exception ex)
@@ -87,7 +82,22 @@ namespace TP1_SLAM5
             return uneCommande;
         }
 
+        public static bool ModifCommande(Commande comm)
+        {
+            bool vretour = true;
+            try
+            {
+                monModel.Commandes.Update(comm);
+                monModel.SaveChanges();
 
+            }
+            catch (Exception ex)
+            {
+                vretour=false;
+            }
+            
+            return vretour;
+        }
 
     }
 }

@@ -122,6 +122,7 @@
             btnModifComm.Text = "Modifier";
             btnModifComm.UseVisualStyleBackColor = true;
             btnModifComm.Visible = false;
+            btnModifComm.Click += btnModifComm_Click;
             // 
             // FormGestionCommandes
             // 

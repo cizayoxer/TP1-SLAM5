@@ -16,25 +16,27 @@ namespace TP1_SLAM5
     public partial class FormGestionCommandes : Form
     {
         string type;
-        int idModif;
+        Commande comm;
+        
         public FormGestionCommandes(string type)
         {
             InitializeComponent();
             this.type = type;
-            this.idModif = -1;
+            comm = new Commande();
 
         }
-        public FormGestionCommandes(string type,int idModif)
+        public FormGestionCommandes(string type, int idModif)
         {
             InitializeComponent();
             this.type = type;
-            this.idModif = idModif;
+            comm = Modele.RecupererCommande(idModif);
+
 
         }
 
         private void FormGestionCommandes_Load(object sender, EventArgs e)
         {
-            
+
             cbCliComm.ValueMember = "NUMCLI";
             cbCliComm.DisplayMember = "nomComplet";
             // nomComplet est la concaténation du nom et prénom issu de la requête suivante
@@ -45,9 +47,9 @@ namespace TP1_SLAM5
             });
             cbCliComm.DataSource = bsClients;
 
-            if (type == "Modif") { 
-                cbCliComm.SelectedValue = idModif;
-                Commande comm = Modele.RecupererCommande(idModif);
+            if (type == "Modif")
+            {
+                cbCliComm.SelectedValue = comm.Numcli;
                 tbMontant.Text = comm.Montantcde.ToString();
                 dtpCommande.Text = comm.Datecde.ToString();
             }
@@ -57,12 +59,13 @@ namespace TP1_SLAM5
                 btnAjouterComm.Visible = true;
                 btnModifComm.Visible = false;
             }
-            else 
+            else
             {
-                if (type == "Modif") 
-                { btnAjouterComm.Visible = false;
-                  btnModifComm.Visible = true;
-                } 
+                if (type == "Modif")
+                {
+                    btnAjouterComm.Visible = false;
+                    btnModifComm.Visible = true;
+                }
             }
         }
 
@@ -71,13 +74,13 @@ namespace TP1_SLAM5
 
             try
             {
-                int montant = int.Parse(tbMontant.Text);
-                DateTime date = dtpCommande.Value.Date;
-                int IdClient = Convert.ToInt32(cbCliComm.SelectedValue);
+                comm.Montantcde = int.Parse(tbMontant.Text);
+                comm.Datecde = DateOnly.FromDateTime(dtpCommande.Value.Date);
+                comm.Numcli = Convert.ToInt32(cbCliComm.SelectedValue);
 
-                if (IdClient != -1)
+                if (comm.Numcli != -1)
                 {
-                    if (Modele.AjoutCommande(montant, date, IdClient))
+                    if (Modele.AjoutCommande(comm))
                     {
                         MessageBox.Show("Insertion réussie");
                         tbMontant.Text = "";
@@ -91,6 +94,33 @@ namespace TP1_SLAM5
                 MessageBox.Show("veuillez entrer un entier en montant");
             }
 
+
+        }
+
+        private void btnModifComm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                comm.Montantcde = int.Parse(tbMontant.Text);
+                comm.Datecde = DateOnly.FromDateTime(dtpCommande.Value.Date);
+                comm.Numcli = Convert.ToInt32(cbCliComm.SelectedValue);
+
+                if (comm.Numcli != -1)
+                {
+                    if (Modele.ModifCommande(comm))
+                    {
+                        MessageBox.Show("Modification réussie");
+                        tbMontant.Text = "";
+                        this.Close();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                tbMontant.Text = "";
+                MessageBox.Show("veuillez entrer un entier en montant");
+            }
 
         }
     }
