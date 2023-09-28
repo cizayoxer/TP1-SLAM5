@@ -13,6 +13,7 @@ namespace TP1_SLAM5
             dgvClients.Columns[1].HeaderText = "Nom";
             dgvClients.Columns[2].HeaderText = "Prénom";
             dgvClients.Columns[3].HeaderText = "Adresse";
+            dgvClients.Columns[4].HeaderText = "N° Téléphone";
 
         }
         public Clients()
@@ -21,12 +22,18 @@ namespace TP1_SLAM5
 
         }
 
-      
+
 
         private void btnCommandes_Click_1(object sender, EventArgs e)
         {
             FormCommandes formCommandes = new FormCommandes();
             formCommandes.Show();
+        }
+
+        private void btn_partition_Click(object sender, EventArgs e)
+        {
+            FormPartitions formPartitions = new FormPartitions();
+            formPartitions.Show();
         }
     }
 }

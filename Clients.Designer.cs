@@ -32,6 +32,7 @@
             bsClients = new BindingSource(components);
             dgvClients = new DataGridView();
             btnCommandes = new Button();
+            btn_partition = new Button();
             ((System.ComponentModel.ISupportInitialize)bsClients).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             SuspendLayout();
@@ -56,7 +57,7 @@
             // 
             // btnCommandes
             // 
-            btnCommandes.Location = new Point(375, 391);
+            btnCommandes.Location = new Point(231, 391);
             btnCommandes.Name = "btnCommandes";
             btnCommandes.Size = new Size(94, 29);
             btnCommandes.TabIndex = 1;
@@ -64,11 +65,22 @@
             btnCommandes.UseVisualStyleBackColor = true;
             btnCommandes.Click += btnCommandes_Click_1;
             // 
+            // btn_partition
+            // 
+            btn_partition.Location = new Point(438, 391);
+            btn_partition.Name = "btn_partition";
+            btn_partition.Size = new Size(94, 29);
+            btn_partition.TabIndex = 2;
+            btn_partition.Text = "Partitions";
+            btn_partition.UseVisualStyleBackColor = true;
+            btn_partition.Click += btn_partition_Click;
+            // 
             // Clients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btn_partition);
             Controls.Add(btnCommandes);
             Controls.Add(dgvClients);
             Name = "Clients";
@@ -84,5 +96,6 @@
         private BindingSource bsClients;
         private DataGridView dgvClients;
         private Button btnCommandes;
+        private Button btn_partition;
     }
 }

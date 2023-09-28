@@ -33,6 +33,9 @@
             bsCommandes = new BindingSource(components);
             cbClients = new ComboBox();
             bsClients2 = new BindingSource(components);
+            btn_allCli = new Button();
+            btnNvComm = new Button();
+            btnModifComm = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCommandes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bsCommandes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bsClients2).BeginInit();
@@ -55,7 +58,7 @@
             // 
             cbClients.DropDownStyle = ComboBoxStyle.DropDownList;
             cbClients.FormattingEnabled = true;
-            cbClients.Location = new Point(290, 33);
+            cbClients.Location = new Point(182, 33);
             cbClients.Name = "cbClients";
             cbClients.Size = new Size(219, 28);
             cbClients.TabIndex = 1;
@@ -64,11 +67,44 @@
             // 
             bsClients2.CurrentChanged += bsClients2_CurrentChanged;
             // 
+            // btn_allCli
+            // 
+            btn_allCli.Location = new Point(451, 33);
+            btn_allCli.Name = "btn_allCli";
+            btn_allCli.Size = new Size(187, 29);
+            btn_allCli.TabIndex = 2;
+            btn_allCli.Text = "Tous les clients";
+            btn_allCli.UseVisualStyleBackColor = true;
+            btn_allCli.Click += btn_allCli_Click;
+            // 
+            // btnNvComm
+            // 
+            btnNvComm.Location = new Point(182, 409);
+            btnNvComm.Name = "btnNvComm";
+            btnNvComm.Size = new Size(193, 29);
+            btnNvComm.TabIndex = 3;
+            btnNvComm.Text = "Nouvelle commande";
+            btnNvComm.UseVisualStyleBackColor = true;
+            btnNvComm.Click += btnNvComm_Click;
+            // 
+            // btnModifComm
+            // 
+            btnModifComm.Location = new Point(441, 409);
+            btnModifComm.Name = "btnModifComm";
+            btnModifComm.Size = new Size(132, 29);
+            btnModifComm.TabIndex = 4;
+            btnModifComm.Text = "Modifier";
+            btnModifComm.UseVisualStyleBackColor = true;
+            btnModifComm.Click += btnModifComm_Click;
+            // 
             // FormCommandes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnModifComm);
+            Controls.Add(btnNvComm);
+            Controls.Add(btn_allCli);
             Controls.Add(cbClients);
             Controls.Add(dgvCommandes);
             Name = "FormCommandes";
@@ -86,5 +122,8 @@
         private BindingSource bsCommandes;
         private ComboBox cbClients;
         private BindingSource bsClients2;
+        private Button btn_allCli;
+        private Button btnNvComm;
+        private Button btnModifComm;
     }
 }
