@@ -32,8 +32,14 @@ namespace TP1_SLAM5
             });
             cbClients.DataSource = bsClients2;
 
+            resetDGV();
 
 
+
+        }
+
+        public void resetDGV()
+        {
             bsCommandes.DataSource = Modele.listeCommandes().Select(x => new
             {
                 x.Numcde,
@@ -43,7 +49,14 @@ namespace TP1_SLAM5
                 x.NumcliNavigation.Prenomcli
             });
             dgvCommandes.DataSource = bsCommandes;
-
+            if (dgvCommandes.Rows.Count > 1)
+            {
+                dgvCommandes.Columns[0].HeaderText = "Numéro commande";
+                dgvCommandes.Columns[1].HeaderText = "Montant commande";
+                dgvCommandes.Columns[2].HeaderText = "Date commande";
+                dgvCommandes.Columns[3].HeaderText = "Nom";
+                dgvCommandes.Columns[4].HeaderText = "Prénom";
+            }
 
         }
 
@@ -90,6 +103,25 @@ namespace TP1_SLAM5
 
             FormGestionCommandes formAddCommandes = new FormGestionCommandes("Modif", idCommande);
             formAddCommandes.Show();
+        }
+
+        private void btnSupprComm_Click(object sender, EventArgs e)
+        {
+            System.Type type = bsCommandes.Current.GetType();
+            int idCommande = (int)type.GetProperty("Numcde").GetValue(bsCommandes.Current, null);
+
+            if (MessageBox.Show("Etes vous sur de vouloir supprimer la commande :" + idCommande,
+"Suppression", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                Modele.SuppCommande(idCommande);
+                resetDGV();
+            }
+
+        }
+
+        private void FormCommandes_Activated(object sender, EventArgs e)
+        {
+            resetDGV();
         }
     }
 }

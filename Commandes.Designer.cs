@@ -36,6 +36,7 @@
             btn_allCli = new Button();
             btnNvComm = new Button();
             btnModifComm = new Button();
+            btnSupprComm = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCommandes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bsCommandes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bsClients2).BeginInit();
@@ -79,7 +80,7 @@
             // 
             // btnNvComm
             // 
-            btnNvComm.Location = new Point(182, 409);
+            btnNvComm.Location = new Point(101, 409);
             btnNvComm.Name = "btnNvComm";
             btnNvComm.Size = new Size(193, 29);
             btnNvComm.TabIndex = 3;
@@ -89,7 +90,7 @@
             // 
             // btnModifComm
             // 
-            btnModifComm.Location = new Point(441, 409);
+            btnModifComm.Location = new Point(361, 409);
             btnModifComm.Name = "btnModifComm";
             btnModifComm.Size = new Size(132, 29);
             btnModifComm.TabIndex = 4;
@@ -97,11 +98,22 @@
             btnModifComm.UseVisualStyleBackColor = true;
             btnModifComm.Click += btnModifComm_Click;
             // 
+            // btnSupprComm
+            // 
+            btnSupprComm.Location = new Point(552, 409);
+            btnSupprComm.Name = "btnSupprComm";
+            btnSupprComm.Size = new Size(122, 29);
+            btnSupprComm.TabIndex = 5;
+            btnSupprComm.Text = "Supprimer";
+            btnSupprComm.UseVisualStyleBackColor = true;
+            btnSupprComm.Click += btnSupprComm_Click;
+            // 
             // FormCommandes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSupprComm);
             Controls.Add(btnModifComm);
             Controls.Add(btnNvComm);
             Controls.Add(btn_allCli);
@@ -109,6 +121,7 @@
             Controls.Add(dgvCommandes);
             Name = "FormCommandes";
             Text = "Commandes";
+            Activated += FormCommandes_Activated;
             Load += Commandes_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCommandes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bsCommandes).EndInit();
@@ -125,5 +138,6 @@
         private Button btn_allCli;
         private Button btnNvComm;
         private Button btnModifComm;
+        private Button btnSupprComm;
     }
 }

@@ -84,6 +84,7 @@ namespace TP1_SLAM5
                     {
                         MessageBox.Show("Insertion réussie");
                         tbMontant.Text = "";
+                        this.Close();
 
                     }
                 }
