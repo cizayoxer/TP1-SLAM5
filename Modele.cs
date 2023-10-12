@@ -12,10 +12,10 @@ namespace TP1_SLAM5
 {
     internal static class Modele
     {
-        private static BdPartitionsContext monModel;
+        private static CanevetRomainSlam5Context monModel;
         public static void init()
         {
-            monModel = new BdPartitionsContext();
+            monModel = new CanevetRomainSlam5Context();
         }
         public static List<Client> listeClients()
         {
